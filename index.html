@@ -13,6 +13,10 @@
         font-family: "Segoe UI", sans-serif;
         background: #eef1f7;
       }
+video{
+   max-width:100%;
+   height:auto;
+}
 
       /* HEADER */
       header {
@@ -411,7 +415,15 @@ header{
     <div class="modal" id="videoModal">
       <button class="back-btn" onclick="closeVideo()">← Trang chủ</button>
 
-      <video id="videoPlayer" controls autoplay muted></video>
+      <video 
+   id="videoPlayer"
+   controls
+   autoplay
+   muted
+   playsinline
+   webkit-playsinline
+></video>
+
 
       <div class="overlay" id="overlay">
   <div class="shopee-box">
