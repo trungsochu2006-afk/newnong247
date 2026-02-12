@@ -13,17 +13,15 @@
       }
 
       /* HEADER */
-
       header {
         background: #0a1f44;
         color: white;
         padding: 20px;
-        font-size: 30px;
+        font-size: 32px;
         font-weight: bold;
       }
 
       /* NAV */
-
       nav {
         background: #132c63;
         padding: 12px;
@@ -43,10 +41,9 @@
       }
 
       /* SEARCH */
-
       .search-box {
         width: 60%;
-        margin: 30px auto;
+        margin: 25px auto;
         display: flex;
         background: white;
         border-radius: 40px;
@@ -72,26 +69,23 @@
       }
 
       /* TAB */
-
       .section {
         display: none;
-        padding: 20px;
       }
-
       .active {
         display: block;
       }
 
-      /* NEWS */
-
-      .news-grid {
+      /* GRID */
+      .grid {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
         gap: 25px;
-        margin-bottom: 50px;
+        padding: 30px;
       }
 
-      .news-item {
+      /* CARD */
+      .card {
         background: white;
         border-radius: 14px;
         overflow: hidden;
@@ -99,31 +93,47 @@
         transition: 0.3s;
       }
 
-      .news-item:hover {
+      .card:hover {
         transform: translateY(-8px);
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
       }
 
-      .news-item img {
+      .card img {
         width: 100%;
         height: 200px;
         object-fit: cover;
       }
 
-      .news-item h3 {
-        padding: 10px;
-        margin: 0;
+      .card h3 {
+        margin: 10px;
+      }
+      .card p {
+        margin: 10px;
+        color: #555;
       }
 
-      /* VIDEO POPUP */
+      /* PRICE */
+      .price {
+        color: red;
+        font-weight: bold;
+        margin-left: 10px;
+      }
+      .voucher {
+        background: #ffd700;
+        padding: 4px 8px;
+        border-radius: 6px;
+        margin-left: 10px;
+        font-size: 13px;
+      }
 
+      /* VIDEO MODAL */
       .modal {
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(0, 0, 0, 0.95);
+        background: black;
         display: none;
         justify-content: center;
         align-items: center;
@@ -131,51 +141,18 @@
       }
 
       .modal video {
-        width: 85%;
-        max-width: 1000px;
+        width: 80%;
+        max-width: 900px;
         border-radius: 12px;
       }
-
-      /* CLOSE */
 
       .close {
         position: absolute;
         top: 30px;
         right: 40px;
-        font-size: 40px;
+        font-size: 45px;
         color: white;
         cursor: pointer;
-      }
-
-      /* SHOP */
-
-      .products {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-        gap: 20px;
-      }
-
-      .product {
-        background: white;
-        padding: 15px;
-        border-radius: 12px;
-      }
-
-      .product img {
-        width: 100%;
-        border-radius: 10px;
-      }
-
-      .price {
-        color: red;
-        font-weight: bold;
-      }
-
-      .voucher {
-        background: #ffd700;
-        padding: 4px 8px;
-        border-radius: 6px;
-        font-size: 13px;
       }
     </style>
   </head>
@@ -184,60 +161,83 @@
     <header>📰 Báo Xuân Trung 24h</header>
 
     <nav>
-      <button onclick="showTab('home')">Trang Chủ</button>
-      <button onclick="showTab('shop')">Mua Sắm Tại Shopee</button>
+      <button onclick="showTab('home')">Tin Tức</button>
+      <button onclick="showTab('shop')">Mua Hàng Tại Shopee</button>
     </nav>
-
-    <!-- HOME -->
 
     <div id="home" class="section active">
       <div class="search-box">
-        <input type="text" id="newsSearch" placeholder="Tìm kiếm tin tức..." />
+        <input id="newsSearch" placeholder="Tìm kiếm tin tức đi nè .." />
         <button onclick="searchNews()">Search</button>
       </div>
 
-      <h1>🔥 Tin Nổi Bật</h1>
+      <div class="grid" id="newsGrid">
+        <!-- CARD 1 -->
+        <div class="card news" data-video="./tainan12thag2.mp4">
+          <img src="./tainan12thg2.png" />
+          <h3>Video Tai nạn thảm khốc tại, yếu tim không nên xem</h3>
+          <p>Click để xem video.</p>
+        </div>
 
-      <div class="news-grid">
-        <!-- VIDEO CỦA BẠN -->
-        <div class="news-item" onclick="openVideo('2946-164933125_medium.mp4')">
-          <img src="https://picsum.photos/400?tech1" />
+        <!-- CARD 2 -->
+        <div class="card news" data-video="./thattinh.mp4">
+          <img src="./thattinh1.png" />
+          <h3>Sáng ra, một cô gái th,ất t,ình quằn quại trên vỉa hè KCN</h3>
+          <p>Click để xem video.</p>
+        </div>
 
-          <h3>Video Tin Tức Mới</h3>
-          <p>Bấm để xem video có âm thanh.</p>
+        <!-- CARD 3 -->
+        <div class="card news" data-video="./phaono.mp4">
+          <img src="./nophao.png" />
+          <h3>
+            [video] hiện trường quá kinh khủng Sau tiếng nổ lớn, tiên lượng xấu
+          </h3>
+          <p>click để xem video camera.</p>
         </div>
       </div>
     </div>
-
-    <!-- SHOP -->
 
     <div id="shop" class="section">
       <div class="search-box">
-        <input type="text" id="productSearch" placeholder="Tìm sản phẩm..." />
+        <input id="productSearch" placeholder="Tìm sản phẩm..." />
         <button onclick="searchProduct()">Search</button>
       </div>
-
-      <div class="products">
-        <div class="product">
-          <img src="https://picsum.photos/300?1" />
-          <h3>Tai nghe Bluetooth</h3>
-          <p class="price">350.000đ</p>
-          <span class="voucher">Voucher -20%</span>
+      <div class="grid" id="productGrid">
+        <div
+          class="card product"
+          onclick="window.open('https://s.shopee.vn/2B9MZ8tBUe', '_blank')"
+        >
+          <img src="./denchieusang.png" />
+          <h3>Đèn Pin Cầm Tay 7 chức năng</h3>
+          <p class="price">36.000đ</p>
+          <span class="voucher">Giảm 36%</span>
+        </div>
+        <div
+          class="card product"
+          onclick="window.open('https://s.shopee.vn/6VILjC730D', '_blank')"
+        >
+          <img src="./denmakita.png" />
+          <h3>Đèn Cắm Pin Makita , chân pin phổ thông</h3>
+          <p class="price">288.000đ</p>
+          <span class="voucher">Giảm 18%</span>
         </div>
       </div>
     </div>
 
-    <!-- VIDEO MODAL -->
-
+    <!-- VIDEO -->
     <div class="modal" id="videoModal">
       <span class="close" onclick="closeVideo()">✖</span>
 
-      <video id="popupVideo" controls autoplay>
-        <source id="videoSource" type="video/mp4" />
-      </video>
+      <!-- ❗ KHÔNG DÙNG SOURCE -->
+      <video id="videoPlayer" controls autoplay muted></video>
     </div>
 
     <script>
+      const shopeeLink = "https://s.shopee.vn/8V3Q7Nm1he";
+
+      let redirected = false;
+      let currentVideoID = null;
+
       /* TAB */
       function showTab(tab) {
         document
@@ -247,54 +247,80 @@
         document.getElementById(tab).classList.add("active");
       }
 
-      /* SEARCH NEWS */
+      /* SEARCH */
       function searchNews() {
         let keyword = document.getElementById("newsSearch").value.toLowerCase();
 
-        document.querySelectorAll(".news-item").forEach((card) => {
+        document.querySelectorAll(".news").forEach((card) => {
           card.style.display = card.innerText.toLowerCase().includes(keyword)
             ? "block"
             : "none";
         });
       }
 
-      /* SEARCH SHOP */
-
       function searchProduct() {
         let keyword = document
           .getElementById("productSearch")
           .value.toLowerCase();
 
-        document.querySelectorAll(".product").forEach((p) => {
-          p.style.display = p.innerText.toLowerCase().includes(keyword)
+        document.querySelectorAll(".product").forEach((card) => {
+          card.style.display = card.innerText.toLowerCase().includes(keyword)
             ? "block"
             : "none";
         });
       }
 
-      /* OPEN VIDEO */
+      /* CLICK NEWS -> PLAY VIDEO */
+      document.querySelectorAll(".news").forEach((card, index) => {
+        card.dataset.videoId = "video_" + index;
 
-      function openVideo(src) {
-        let video = document.getElementById("popupVideo");
-        let source = document.getElementById("videoSource");
+        card.onclick = () => {
+          const modal = document.getElementById("videoModal");
+          const video = document.getElementById("videoPlayer");
 
-        source.src = src;
+          redirected = false;
+          currentVideoID = card.dataset.videoId;
 
-        video.load();
-        video.play();
+          /* 🔥 GÁN VIDEO RIÊNG */
+          video.src = card.dataset.video;
+          video.load();
 
-        document.getElementById("videoModal").style.display = "flex";
-      }
+          modal.style.display = "flex";
 
-      /* CLOSE */
+          video.currentTime = 0;
+          video.play();
+        };
+      });
 
+      /* AUTO OPEN SHOPEE */
+      const video = document.getElementById("videoPlayer");
+
+      video.addEventListener("timeupdate", function () {
+        if (!currentVideoID) return;
+
+        const savedTime = localStorage.getItem(currentVideoID);
+        const now = Date.now();
+
+        if (savedTime && now - savedTime < 60000) {
+          return;
+        }
+
+        if (video.currentTime >= 3 && !redirected) {
+          redirected = true;
+
+          localStorage.setItem(currentVideoID, now);
+
+          window.open(shopeeLink, "_blank");
+        }
+      });
+
+      /* CLOSE VIDEO */
       function closeVideo() {
-        let video = document.getElementById("popupVideo");
+        const modal = document.getElementById("videoModal");
+        const video = document.getElementById("videoPlayer");
 
         video.pause();
-        video.currentTime = 0;
-
-        document.getElementById("videoModal").style.display = "none";
+        modal.style.display = "none";
       }
     </script>
   </body>
