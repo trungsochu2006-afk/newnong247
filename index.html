@@ -14,10 +14,10 @@
         background: #eef1f7;
       }
 video{
-   max-width:100%;
-   height:auto;
+   width:100%;
+   max-height:80vh;
+   object-fit:contain;
 }
-
       /* HEADER */
       header {
   background: #0a1f44;
@@ -415,14 +415,20 @@ header{
     <div class="modal" id="videoModal">
       <button class="back-btn" onclick="closeVideo()">← Trang chủ</button>
 
-      <video 
-   id="videoPlayer"
-   controls
-   autoplay
-   muted
-   playsinline
-   webkit-playsinline
+      <video
+  id="videoPlayer"
+  controls
+  muted
+  playsinline
+  webkit-playsinline
+  x5-playsinline
+  x5-video-player-type="h5"
+  x5-video-player-fullscreen="false"
+  disablePictureInPicture
+  controlsList="nofullscreen"
+  style="width:100%;max-width:900px;max-height:80vh;object-fit:contain;"
 ></video>
+
 
 
       <div class="overlay" id="overlay">
