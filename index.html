@@ -1,9 +1,11 @@
+
 <!doctype html>
 <html lang="vi">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Báo Xuân Trung 24h</title>
+    <title>Báo Xuân Trung 24h
+    </title>
 
     <style>
       body {
@@ -14,12 +16,17 @@
 
       /* HEADER */
       header {
-        background: #0a1f44;
-        color: white;
-        padding: 20px;
-        font-size: 32px;
-        font-weight: bold;
-      }
+  background: #0a1f44;
+  color: white;
+  padding: 20px;
+  font-size: 32px;
+
+  /* thêm 3 dòng này */
+  display:flex;
+  align-items:center;
+  gap:15px;
+}
+
 
       /* NAV */
       nav {
@@ -35,9 +42,33 @@
         margin-right: 18px;
         cursor: pointer;
       }
-
+.logo{
+    width: 65px;
+    height:65px;
+    object-fit:contain;
+}
       nav button:hover {
         color: #ffd700;
+      }
+      /* BACK BUTTON */
+      .back-btn {
+        position: absolute;
+        top: 25px;
+        left: 25px;
+        z-index: 10000;
+        background: #0a1f44;
+        color: white;
+        border: none;
+        padding: 12px 18px;
+        font-size: 16px;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      .back-btn:hover {
+        background: #ffd700;
+        color: black;
       }
 
       /* SEARCH */
@@ -88,7 +119,7 @@
       .card {
         background: white;
         border-radius: 14px;
-        overflow: hidden;
+        overflow: visible;
         cursor: pointer;
         transition: 0.3s;
       }
@@ -112,12 +143,12 @@
         color: #555;
       }
 
-      /* PRICE */
       .price {
         color: red;
         font-weight: bold;
         margin-left: 10px;
       }
+
       .voucher {
         background: #ffd700;
         padding: 4px 8px;
@@ -146,25 +177,179 @@
         border-radius: 12px;
       }
 
-      .close {
+      /* 🔥 OVERLAY SHOPEE */
+      .overlay {
         position: absolute;
-        top: 30px;
-        right: 40px;
-        font-size: 45px;
-        color: white;
-        cursor: pointer;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        background: rgba(0, 0, 0, 0.75);
+        flex-direction: column;
+        gap: 20px;
       }
+
+      .overlay img {
+        width: 220px;
+      }
+
+      .tick-btn {
+  position: absolute;
+  top: -35px;
+  right: -35px;
+
+  font-size: 45px;
+  background: #ff3b30;
+  color: white;
+  border: none;
+
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+
+  cursor: pointer;
+  transition: 0.25s;
+  font-weight: bold;
+}
+
+.tick-btn:hover {
+  transform: scale(1.2);
+}
+
+
+      .tick-btn:hover {
+        transform: scale(1.1);
+      }
+      .shopee-box {
+       position: relative;
+           }
+      .shopeeicon {
+  width: 320px;   /* tăng size */
+  height: 320px;
+  object-fit: cover;
+box-shadow: 0 0 40px rgba(255, 80, 50, 0.7);
+
+  /* tạo lục giác */
+  clip-path: polygon(
+    25% 5%, 
+    75% 5%, 
+    100% 50%, 
+    75% 95%, 
+    25% 95%, 
+    0% 50%
+  );
+
+  border: 12px solid white;
+}
+header{
+  position: relative;
+  overflow: hidden; /* quan trọng để thỏ không tràn */
+}
+
+/* ===== CON THỎ CHẠY ===== */
+
+.rabbit-run{
+  position: absolute;
+  top: 5px;
+  width: 60px;
+
+  animation: rabbitRun 8s linear infinite;
+}
+
+@keyframes rabbitRun{
+
+  0%{
+    left:-80px;
+    transform: scaleX(1);
+  }
+
+  50%{
+    left: calc(100% - 60px);
+    transform: scaleX(1);
+  }
+
+  51%{
+    transform: scaleX(-1);
+  }
+
+  100%{
+    left: -100px;px;
+    transform: scaleX(-1);
+  }
+}
+/* KHUNG CHẠY */
+.ghost-runner{
+    width:100%;
+    height:70px;
+    position:relative;
+    overflow:hidden;
+    background:transparent;
+}
+
+/* CON MA */
+.ghost{
+    position:absolute;
+    width:65px;
+
+    animation: ghostMove 12s linear infinite;
+}
+
+/* chạy qua lại chậm */
+@keyframes ghostMove{
+
+    0%{
+        left:-80px;
+        transform: scaleX(1);
+    }
+
+    50%{
+        left: calc(100% - 80px);
+        transform: scaleX(1);
+    }
+
+    51%{
+        transform: scaleX(-1); /* quay đầu */
+    }
+
+    100%{
+        left:-80px;
+        transform: scaleX(-1);
+    }
+}
+
+
+
+
     </style>
   </head>
 
   <body>
-    <header>📰 Báo Xuân Trung 24h</header>
+   <header>
+
+   <!-- ✅ CON THỎ -->
+   <img src="./rabbit.png" class="rabbit-run">
+
+   <img src="./trung.png" class="logo">
+   Báo Xuân Trung 24h
+
+</header>
+
+
+
 
     <nav>
       <button onclick="showTab('home')">Tin Tức</button>
       <button onclick="showTab('shop')">Mua Hàng Tại Shopee</button>
     </nav>
+    <div class="ghost-runner">
+   <img src="./ghost.png" class="ghost">
+</div>
 
+
+    <!-- HOME -->
     <div id="home" class="section active">
       <div class="search-box">
         <input id="newsSearch" placeholder="Tìm kiếm tin tức đi nè .." />
@@ -172,37 +357,34 @@
       </div>
 
       <div class="grid" id="newsGrid">
-        <!-- CARD 1 -->
         <div class="card news" data-video="./tainan12thag2.mp4">
           <img src="./tainan12thg2.png" />
-          <h3>Video Tai nạn thảm khốc tại, yếu tim không nên xem</h3>
+          <h3>Video Tai nạn thảm khốc</h3>
           <p>Click để xem video.</p>
         </div>
 
-        <!-- CARD 2 -->
         <div class="card news" data-video="./thattinh.mp4">
           <img src="./thattinh1.png" />
-          <h3>Sáng ra, một cô gái th,ất t,ình quằn quại trên vỉa hè KCN</h3>
+          <h3>Cô gái thất tình</h3>
           <p>Click để xem video.</p>
         </div>
 
-        <!-- CARD 3 -->
         <div class="card news" data-video="./phaono.mp4">
           <img src="./nophao.png" />
-          <h3>
-            [video] hiện trường quá kinh khủng Sau tiếng nổ lớn, tiên lượng xấu
-          </h3>
-          <p>click để xem video camera.</p>
+          <h3>Sau tiếng nổ lớn</h3>
+          <p>Click để xem video.</p>
         </div>
       </div>
     </div>
 
+    <!-- SHOP -->
     <div id="shop" class="section">
       <div class="search-box">
         <input id="productSearch" placeholder="Tìm sản phẩm..." />
         <button onclick="searchProduct()">Search</button>
       </div>
-      <div class="grid" id="productGrid">
+
+      <div class="grid">
         <div
           class="card product"
           onclick="window.open('https://s.shopee.vn/2B9MZ8tBUe', '_blank')"
@@ -212,12 +394,13 @@
           <p class="price">36.000đ</p>
           <span class="voucher">Giảm 36%</span>
         </div>
+
         <div
           class="card product"
           onclick="window.open('https://s.shopee.vn/6VILjC730D', '_blank')"
         >
           <img src="./denmakita.png" />
-          <h3>Đèn Cắm Pin Makita , chân pin phổ thông</h3>
+          <h3>Đèn Cắm Pin Makita</h3>
           <p class="price">288.000đ</p>
           <span class="voucher">Giảm 18%</span>
         </div>
@@ -226,17 +409,22 @@
 
     <!-- VIDEO -->
     <div class="modal" id="videoModal">
-      <span class="close" onclick="closeVideo()">✖</span>
+      <button class="back-btn" onclick="closeVideo()">← Trang chủ</button>
 
-      <!-- ❗ KHÔNG DÙNG SOURCE -->
       <video id="videoPlayer" controls autoplay muted></video>
-    </div>
+
+      <div class="overlay" id="overlay">
+  <div class="shopee-box">
+    <img src="./shopeeicon.png" class="shopeeicon"/>
+
+    <button class="tick-btn" onclick="goShopee()">✖</button>
+  </div>
+</div>
 
     <script>
       const shopeeLink = "https://s.shopee.vn/8V3Q7Nm1he";
 
-      let redirected = false;
-      let currentVideoID = null;
+      let overlayShown = false;
 
       /* TAB */
       function showTab(tab) {
@@ -270,18 +458,16 @@
         });
       }
 
-      /* CLICK NEWS -> PLAY VIDEO */
-      document.querySelectorAll(".news").forEach((card, index) => {
-        card.dataset.videoId = "video_" + index;
-
+      /* CLICK NEWS */
+      document.querySelectorAll(".news").forEach((card) => {
         card.onclick = () => {
           const modal = document.getElementById("videoModal");
           const video = document.getElementById("videoPlayer");
+          const overlay = document.getElementById("overlay");
 
-          redirected = false;
-          currentVideoID = card.dataset.videoId;
+          overlay.style.display = "none";
+          overlayShown = false;
 
-          /* 🔥 GÁN VIDEO RIÊNG */
           video.src = card.dataset.video;
           video.load();
 
@@ -292,36 +478,59 @@
         };
       });
 
-      /* AUTO OPEN SHOPEE */
+      /* HIỆN OVERLAY SAU 8S */
       const video = document.getElementById("videoPlayer");
 
       video.addEventListener("timeupdate", function () {
-        if (!currentVideoID) return;
+        if (video.currentTime >= 8 && !overlayShown) {
+          overlayShown = true;
 
-        const savedTime = localStorage.getItem(currentVideoID);
-        const now = Date.now();
+          video.pause();
 
-        if (savedTime && now - savedTime < 60000) {
-          return;
-        }
-
-        if (video.currentTime >= 3 && !redirected) {
-          redirected = true;
-
-          localStorage.setItem(currentVideoID, now);
-
-          window.open(shopeeLink, "_blank");
+          document.getElementById("overlay").style.display = "flex";
         }
       });
 
-      /* CLOSE VIDEO */
+      /* CLICK SHOPEE */
+      function goShopee() {
+        const video = document.getElementById("videoPlayer");
+        const overlay = document.getElementById("overlay");
+
+        overlay.style.display = "none";
+
+        /* mở tab */
+        window.open(shopeeLink, "_blank");
+
+        /* chạy tiếp video */
+        video.play();
+      }
       function closeVideo() {
         const modal = document.getElementById("videoModal");
         const video = document.getElementById("videoPlayer");
+        const overlay = document.getElementById("overlay");
 
         video.pause();
+        video.currentTime = 0;
+
+        overlay.style.display = "none";
+        overlayShown = false;
+
         modal.style.display = "none";
+
+        // 👉 đảm bảo quay về HOME
+        showTab("home");
       }
+
+      /* Khi quay lại tab -> video chạy tiếp */
+      window.addEventListener("focus", () => {
+        const video = document.getElementById("videoPlayer");
+        const overlay = document.getElementById("overlay");
+
+        if (overlayShown) {
+          overlay.style.display = "none";
+          video.play();
+        }
+      });
     </script>
   </body>
 </html>
