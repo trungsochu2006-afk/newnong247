@@ -3,12 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <title>Báo Xuân Trung 24h</title>
 
     <style>
-      /* GLOBAL */
-
       body {
         margin: 0;
         font-family: "Segoe UI", sans-serif;
@@ -118,11 +115,6 @@
         margin: 0;
       }
 
-      .news-item p {
-        padding: 0 10px 15px;
-        color: #555;
-      }
-
       /* VIDEO POPUP */
 
       .modal {
@@ -135,14 +127,16 @@
         display: none;
         justify-content: center;
         align-items: center;
+        z-index: 999;
       }
 
       .modal video {
         width: 85%;
+        max-width: 1000px;
         border-radius: 12px;
       }
 
-      /* CLOSE BTN */
+      /* CLOSE */
 
       .close {
         position: absolute;
@@ -194,7 +188,7 @@
       <button onclick="showTab('shop')">Mua Sắm Tại Shopee</button>
     </nav>
 
-    <!-- ================= TRANG CHỦ ================= -->
+    <!-- HOME -->
 
     <div id="home" class="section active">
       <div class="search-box">
@@ -204,56 +198,18 @@
 
       <h1>🔥 Tin Nổi Bật</h1>
 
-      <!-- CÔNG NGHỆ -->
-
-      <h2>💻 Công Nghệ</h2>
-
       <div class="news-grid">
-        <div
-          class="news-item"
-          onclick="openVideo('https://www.w3schools.com/html/movie.mp4')"
-        >
+        <!-- VIDEO CỦA BẠN -->
+        <div class="news-item" onclick="openVideo('2946-164933125_medium.mp4')">
           <img src="https://picsum.photos/400?tech1" />
-          <h3>AI đang thay đổi ngành robot</h3>
-          <p>Các công ty tự động hóa tăng trưởng mạnh...</p>
-        </div>
 
-        <div
-          class="news-item"
-          onclick="openVideo('https://www.w3schools.com/html/mov_bbb.mp4')"
-        >
-          <img src="https://picsum.photos/400?tech2" />
-          <h3>Chip mới nhanh gấp 5 lần</h3>
-          <p>Kỷ nguyên phần cứng tốc độ cao.</p>
-        </div>
-      </div>
-
-      <!-- KINH TẾ -->
-
-      <h2>📈 Kinh Tế</h2>
-
-      <div class="news-grid">
-        <div
-          class="news-item"
-          onclick="openVideo('https://www.w3schools.com/html/movie.mp4')"
-        >
-          <img src="https://picsum.photos/400?biz1" />
-          <h3>Startup Việt hút vốn lớn</h3>
-          <p>Nhiều quỹ đầu tư đổ vào thị trường...</p>
-        </div>
-
-        <div
-          class="news-item"
-          onclick="openVideo('https://www.w3schools.com/html/mov_bbb.mp4')"
-        >
-          <img src="https://picsum.photos/400?biz2" />
-          <h3>Thị trường 2026 bùng nổ</h3>
-          <p>Dự báo tăng trưởng cao.</p>
+          <h3>Video Tin Tức Mới</h3>
+          <p>Bấm để xem video có âm thanh.</p>
         </div>
       </div>
     </div>
 
-    <!-- ================= SHOP ================= -->
+    <!-- SHOP -->
 
     <div id="shop" class="section">
       <div class="search-box">
@@ -268,13 +224,6 @@
           <p class="price">350.000đ</p>
           <span class="voucher">Voucher -20%</span>
         </div>
-
-        <div class="product">
-          <img src="https://picsum.photos/300?2" />
-          <h3>Chuột Gaming</h3>
-          <p class="price">250.000đ</p>
-          <span class="voucher">Freeship</span>
-        </div>
       </div>
     </div>
 
@@ -284,7 +233,7 @@
       <span class="close" onclick="closeVideo()">✖</span>
 
       <video id="popupVideo" controls autoplay>
-        <source id="videoSource" />
+        <source id="videoSource" type="video/mp4" />
       </video>
     </div>
 
@@ -294,6 +243,7 @@
         document
           .querySelectorAll(".section")
           .forEach((s) => s.classList.remove("active"));
+
         document.getElementById(tab).classList.add("active");
       }
 
@@ -309,6 +259,7 @@
       }
 
       /* SEARCH SHOP */
+
       function searchProduct() {
         let keyword = document
           .getElementById("productSearch")
@@ -321,14 +272,16 @@
         });
       }
 
-      /* OPEN VIDEO WITH SOUND */
+      /* OPEN VIDEO */
 
       function openVideo(src) {
         let video = document.getElementById("popupVideo");
         let source = document.getElementById("videoSource");
 
         source.src = src;
+
         video.load();
+        video.play();
 
         document.getElementById("videoModal").style.display = "flex";
       }
@@ -339,6 +292,8 @@
         let video = document.getElementById("popupVideo");
 
         video.pause();
+        video.currentTime = 0;
+
         document.getElementById("videoModal").style.display = "none";
       }
     </script>
